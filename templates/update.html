@@ -3,7 +3,32 @@
   <title>Update the Record</title>
 </head>
 <body>
-  
+
+
+    <p>First Name: {{ friend[0]['first_name'] }}</p>
+    <p>Last Name: {{ friend[0]['last_name'] }}</p>
+    <p>Occupation: {{ friend[0]['occupation'] }}</p>
+    <p>Created: {{ friend[0]['created_at'] }}</p>
+    <p>Updated: {{ friend[0]['updated_at'] }}</p>
+  <form action='/friends/{{friend[0]['id']}}' method='POST'>
+    {% if action == 'update'%}
+    <label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label>
+    <label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label>
+    <label for="occupation">Occupation:<input type="text" name="occupation" id="occupation"></label>
+    <input type="hidden" name='action' value='update'>
+    <input type="hidden" name='id' value='{{friend[0]['id']}}'>
+    <input type="submit" value="Update">
+    {%elif action == 'delete'%}
+    <input type="hidden" name='action' value='delete'>
+    <input type="hidden" name='id' value='{{friend[0]['id']}}'>
+    <input type="submit" value="Delete">
+    {%endif%}
+  </form>
+
+  <form action='/'>
+  <input type="submit" value="Cancel">
+  </form>
+
 
 </body>
 </html>
